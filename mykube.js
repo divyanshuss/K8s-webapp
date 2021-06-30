@@ -1,29 +1,29 @@
-function kube() {
+function main() {
 	
 
  
   var i = document.getElementById("input").value
-  var stat = "0"
-  var final = ""
-  if (((i.includes("deployments")) || (i.includes("deploy")) || (i.includes("deployment"))) && ((i.includes("create")) || (i.includes("generate")) || (i.includes("build")))) {
+  var start = "0"
+  var f = ""
+  if (((i.includes("deployments")) || (i.includes("launch")) || (i.includes("deployment"))) && ((i.includes("create")) || (i.includes("generate")) || (i.includes("build")))) {
     var image = prompt("Enter the name of image: ")
 	var deployment_name = prompt("Enter the name of Deployment: ")
-	var stat = "1"
-	var final = stat + " " + image + " " + deployment_name 
+	var start = "1"
+	var f = start + " " + image + " " + deployment_name 
 	}
 
   else if (((i.includes("pods")) || (i.includes("pod"))) && ((i.includes("create")) || (i.includes("generate")) || (i.includes("build")))) {
 	var image = prompt("Enter the name of image: ")
 	var pod_name = prompt("Enter the name of pod: ")
-	var stat = "2"
-	var final = stat + " " + image + " " + pod_name
+	var start = "2"
+	var f = start + " " + image + " " + pod_name
 	
 	}
 
   else if (((i.includes("pods")) || (i.includes("pod"))) && ((i.includes("delete")) || (i.includes("remove")) || (i.includes("detach")))) {
 	var pod_name = prompt("Enter the name of pod: ")
 	var stat = "3"
-	var final = stat + " " + pod_name
+	var f = stat + " " + pod_name
 	
 	}
 
