@@ -1,65 +1,65 @@
 #!/usr/bin/python3
 
 import cgi
-import subprocess
+import subprocess as sp
 
 print("content-type: text/html")
 print()
 
-recieve = cgi.FieldStorage()
-stat=recieve.getvalue("k")
+mydata = cgi.FieldStorage()
+data= mydata.getvalue("k")
 
-var = stat.split()
+var = data.split()
 if var[0] == "1":
-    deployment_name = var[2]
+    depname = var[2]
     image_name = var[1]
-    cmd = "kubectl create deployment " + (deployment_name) + " --image=" + (image_name)
-    output = subprocess.getoutput("sudo " + cmd + " --kubeconfig /root/k8s_tasks/admin.conf")
+    cmd = "kubectl create deployment " + (depname) + " --image=" + (image_name)
+    output = sp.getoutput("sudo " + cmd + " --kubeconfig admin.conf")
     print(output)
 elif var[0] == "2":
-    pod_name = var[2]
+    pod = var[2]
     image_name = var[1]
-    cmd = "kubectl run " + (pod_name) + " --image=" + (image_name)
-    output = subprocess.getoutput("sudo " + cmd + " --kubeconfig /root/k8s_tasks/admin.conf")
+    cmd = "kubectl run " + (pod) + " --image=" + (image_name)
+    output = sp.getoutput("sudo " + cmd + " --kubeconfig admin.conf")
     print(output)
 elif var[0] == "3":
-    pod_name = var[1]
+    pod = var[1]
     cmd = "kubectl delete pod " + (pod_name)
-    output = subprocess.getoutput("sudo " + cmd + " --kubeconfig /root/k8s_tasks/admin.conf")
+    output = sp.getoutput("sudo " + cmd + " --kubeconfig admin.conf")
     print(output)
 elif var[0] == "4":
-    deployment_name = var[1]
-    cmd = "kubectl delete deployment " + (deployment_name)
-    output = subprocess.getoutput("sudo " + cmd + " --kubeconfig /root/k8s_tasks/admin.conf")
+    depname = var[1]
+    cmd = "kubectl delete deployment " + (depname)
+    output = sp.getoutput("sudo " + cmd + " --kubeconfig admin.conf")
     print(output)
 elif var[0] == "5":
-    deployment_name = var[1]
-    port_no = var[2]
-    Expose_type =  var[3]
-    cmd = "kubectl expose deployment " + (deployment_name) + " --port=" + (port_no) + " --type=" + (Expose_type)
-    output = subprocess.getoutput("sudo " + cmd + " --kubeconfig /root/k8s_tasks/admin.conf")
+    depname = var[1]
+    port = var[2]
+    Expose =  var[3]
+    cmd = "kubectl expose deployment " + (depname) + " --port=" + (port) + " --type=" + (Expose)
+    output = sp.getoutput("sudo " + cmd + " --kubeconfig admin.conf")
     print(output)
 elif var[0] == "6":
-    deployment_name = var[1]
+    depname = var[1]
     replica = var[2]
-    cmd = "kubectl scale deployment " + (deployment_name) + " --replicas=" + (replica)
-    output = subprocess.getoutput("sudo " + cmd + " --kubeconfig /root/k8s_tasks/admin.conf")
+    cmd = "kubectl scale deployment " + (depname) + " --replicas=" + (replica)
+    output = sp.getoutput("sudo " + cmd + " --kubeconfig  admin.conf")
     print(output)
 elif var[0] == "7":
-    cmd = "sudo kubectl get pods --kubeconfig /root/k8s_tasks/admin.conf"
-    output = subprocess.getoutput(cmd)
+    cmd = "sudo kubectl get pods --kubeconfig admin.conf"
+    output = sp.getoutput(cmd)
     print(output)
 elif var[0] == "8":
-    cmd = "kubectl get deployments --kubeconfig /root/k8s_tasks/admin.conf"
-    output = subprocess.getoutput("sudo " + cmd)
+    cmd = "kubectl get deployments --kubeconfig admin.conf"
+    output = sp.getoutput("sudo " + cmd)
     print(output)
 elif var[0] == "9":
-    cmd = "kubectl get svc --kubeconfig /root/k8s_tasks/admin.conf"
-    output = subprocess.getoutput(cmd)
+    cmd = "kubectl get svc --kubeconfig admin.conf"
+    output = sp.getoutput(cmd)
     print(output)
 elif var[0] == "10":
-    cmd = "kubectl delete all --all --kubeconfig /root/k8s_tasks/admin.conf"
-    output = subprocess.getoutput("sudo " + cmd)
+    cmd = "kubectl delete all --all --kubeconfig admin.conf"
+    output = sp.getoutput("sudo " + cmd)
     print(output)
 elif var[0] == "11":
-    print("command not found")
+    print("Hey . Give it another try")
